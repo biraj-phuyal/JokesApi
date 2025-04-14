@@ -7,6 +7,11 @@ class JokesController < ApplicationController
     render json: jokes
   end
 
+  def random
+    joke = Joke.all.sample
+    render json: joke
+  end
+
   def show
     joke = Joke.find_by(id: params[:id])
     render json: joke
