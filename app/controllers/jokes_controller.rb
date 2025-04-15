@@ -26,6 +26,15 @@ class JokesController < ApplicationController
     end
   end
 
+  def destroy
+    joke = Joke.find_by(id: params[:id])
+    if joke.delete
+      render json: { message: 'Why did you delete your own kinds?' }, status: :ok
+    else
+      render json: { message: 'Sucide is not recommended, please reconsidered' }, status: :no_content
+    end
+  end
+
   private
 
   def jokes_params
