@@ -41,3 +41,4 @@ class JokesController < ApplicationController
     params.require(:joke).permit(:content, :humour, :context)
   end
 end
+
