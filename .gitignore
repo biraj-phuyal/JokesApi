@@ -3,3 +3,4 @@ tmp/pids/
 tmp/storage/
 storage/*sqlite3
 log/*.log
+/config/master.key
