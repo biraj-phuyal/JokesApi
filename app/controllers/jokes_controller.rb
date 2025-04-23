@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+
 # this is a class of jokes
 class JokesController < ApplicationController
   def index
@@ -18,7 +19,10 @@ class JokesController < ApplicationController
   end
 
   def create
-    joke = Joke.create(jokes_params)
+    joke = Joke.new(jokes_params)
+    if joke.content.blank?
+      joke.content = JokeGenerator.perform(joke.humour, joke.context)
+    end
     if joke.save
       render json: joke, status: :created
     else
@@ -34,9 +38,9 @@ class JokesController < ApplicationController
       render json: { message: 'Sucide is not recommended, please reconsidered' }, status: :no_content
     end
   end
-
+  
   private
-
+  
   def jokes_params
     params.require(:joke).permit(:content, :humour, :context)
   end

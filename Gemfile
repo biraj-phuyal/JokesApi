@@ -50,3 +50,5 @@ group :development, :test do
   # importing AI api
   gem 'ruby-openai'
 end
+
+gem "pry", "~> 0.15.2"
