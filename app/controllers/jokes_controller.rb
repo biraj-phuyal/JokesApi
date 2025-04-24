@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 # this is a class of jokes
 class JokesController < ApplicationController
   def index
@@ -32,7 +31,7 @@ class JokesController < ApplicationController
       render json: { message: 'Sucide is not recommended, please reconsider' }, status: :no_content
     end
   end
-  
+
   private
 
   def joke_params
