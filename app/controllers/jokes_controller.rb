@@ -34,13 +34,8 @@ class JokesController < ApplicationController
   end
   
   private
-<<<<<<< Updated upstream
-  
-  def jokes_params
-=======
 
   def joke_params
->>>>>>> Stashed changes
     params.require(:joke).permit(:content, :humour, :context)
   end
 end
