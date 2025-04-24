@@ -4,25 +4,19 @@
 # this is a class of jokes
 class JokesController < ApplicationController
   def index
-    jokes = Joke.all
-    render json: jokes
+    render json: Joke.all
   end
 
   def random
-    joke = Joke.all.sample
-    render json: joke
+    render json: Joke.all.sample
   end
 
   def show
-    joke = Joke.find_by(id: params[:id])
-    render json: joke
+    render json: Joke.find_by(id: params[:id])
   end
 
   def create
-    joke = Joke.new(jokes_params)
-    if joke.content.blank?
-      joke.content = JokeGenerator.perform(joke.humour, joke.context)
-    end
+    joke = Joke.new(joke_params)
     if joke.save
       render json: joke, status: :created
     else
@@ -33,16 +27,20 @@ class JokesController < ApplicationController
   def destroy
     joke = Joke.find_by(id: params[:id])
     if joke.delete
-      render json: { message: 'Why did you delete your own kinds?' }, status: :ok
+      render json: joke, status: :ok
     else
-      render json: { message: 'Sucide is not recommended, please reconsidered' }, status: :no_content
+      render json: { message: 'Sucide is not recommended, please reconsider' }, status: :no_content
     end
   end
   
   private
+<<<<<<< Updated upstream
   
   def jokes_params
+=======
+
+  def joke_params
+>>>>>>> Stashed changes
     params.require(:joke).permit(:content, :humour, :context)
   end
 end
-
