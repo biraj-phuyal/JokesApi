@@ -19,7 +19,7 @@ class JokesController < ApplicationController
     if joke.save
       render json: joke, status: :created
     else
-      render json: { message: 'Failed to create the joke', errors: joke.errors }, status: :unprocessable_entity
+      render json: { message: 'Failed in creating joke', errors: joke.errors }, status: :unprocessable_entity
     end
   end
 
