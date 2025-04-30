@@ -7,7 +7,6 @@ class JokeGenerator < ApplicationService
   GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=#{Rails.application.credentials[:gemini_api_key]}"
 
   def initialize(humour, context)
-    super
     @humour = humour
     @context = context
   end
@@ -15,18 +14,17 @@ class JokeGenerator < ApplicationService
   def perform
     return if humour.blank? || context.blank?
 
-    response = http.request(request)
     JSON.parse(response.body)['candidates'].first['content']['parts'].first['text']
   end
 
-  def request
+  def response
     uri = URI.parse(GEMINI_URL)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = uri.scheme == 'https'
     request_obj = Net::HTTP::Post.new(uri.request_uri)
     request_obj['Content-Type'] = 'application/json'
     request_obj.body = request_body
-    request_obj
+    http.request(request_obj)
   end
 
   def request_body
