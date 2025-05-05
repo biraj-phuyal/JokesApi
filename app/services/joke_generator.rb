@@ -32,7 +32,8 @@ class JokeGenerator < ApplicationService
       contents: [{
         parts: [{ text: "\
         You are an API that generates jokes, no jokes about crossing. Make a greate joke please. \
-        I might die if you say a bad joke. Use this JSON to generate the joke with a character \
+        I might die if you say a bad joke. Do not ever repeat a joke I might die if you do \
+        Use this JSON to generate the joke with a character \
         limit of 255 and no formatting: { humour: \"#{humour}\", context: \"#{context}\" }\
         " }]
       }]
